@@ -1,0 +1,189 @@
+<SlimSpinnerOption@HoverButton>:
+    size_hint_y: None
+    height: '30dp'
+    padding: [0, 0, 0, 0]
+    background_color: 0.2, 0.2, 0.2, 1
+    normal_color: 0.2, 0.2, 0.2, 1
+    hover_color: 0.35, 0.35, 0.35, 1
+    border: [1, 1, 1, 1]
+    canvas.before:
+        Color: 
+            rgba: 0.1, 0.1, 0.1, 1 # match background
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Color: 
+            rgba: 0.1, 0.1, 0.1, 1 # match background
+        Line:
+            rectangle: self.x, self.y, self.width, self.height
+            width: 2
+    color: 1, 1, 1, 1  # White text color
+    text_size: self.width, None
+    halign: 'left'
+    valign: 'middle'
+    on_press:
+        self.background_color = 0.3, 0.3, 0.3, 1  # Shaded on mouseover
+    on_release:
+        self.background_color = 0.2, 0.2, 0.2, 1  # Reset on release
+
+<MyLayout>:
+    orientation: 'horizontal'
+    padding: [20, 20, 20, 20]
+    spacing: 20
+    canvas.before:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 1  # Warm charcoal background color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.5
+        spacing: 10
+
+        Label:
+            text: 'Choose a vehicle manufacturer:'
+            size_hint_y: None
+            height: '30dp'
+            halign: 'left'
+            padding: [0, 20, 0, 0]
+            color: 1, 1, 1, 1  # White text color
+            text_size: self.width, None
+
+        Spinner:
+            id: manufacturer_spinner
+            text: 'Select manufacturer'
+            values: ['Acura', 'Audi', 'BMW', 'Chevrolet', 'Chrysler', 'Dodge', 'Ford', 'GMC', 'Honda', 'Hyundai', 'Jeep', 'Kia', 'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Porsche', 'Subaru', 'Tesla', 'Toyota', 'Volkswagen', 'Volvo']
+            size_hint_y: None
+            height: '30dp'
+            background_color: 0.2, 0.2, 0.2, 1
+            color: 0.7, 0.7, 0.7, 1  # lighter hint color
+            option_cls: 'SlimSpinnerOption'
+            text_size: self.width, None
+            halign: 'left'
+            valign: 'middle'
+            on_text: root.make = self.text; root.update_model_spinner(self.text)
+
+        Label:
+            text: 'Choose a vehicle model'
+            size_hint_y: None
+            height: '30dp'
+            halign: 'left'
+            padding: [0, 20, 0, 0]
+            color: 1, 1, 1, 1  # White text color
+            text_size: self.width, None
+
+        Spinner:
+            id: model_spinner
+            text: 'Select model'
+            size_hint_y: None
+            height: '30dp'  
+            background_color: 0.2, 0.2, 0.2, 1
+            color: 0.7, 0.7, 0.7, 1  # lighter hint color
+            option_cls: 'SlimSpinnerOption'
+            text_size: self.width, None
+            halign: 'left'
+            valign: 'middle'
+            on_text: root.model = self.text
+
+        Label:
+            text: 'Enter the vehicle year (1990 to 2024):'
+            size_hint_y: None
+            height: '30dp'
+            halign: 'left'
+            padding: [0, 20, 0, 0]
+            color: 1, 1, 1, 1  # White text color
+            text_size: self.width, None
+
+        TextInput:
+            hint_text: 'Year'
+            input_filter: 'int'
+            multiline: False
+            size_hint_y: None
+            height: '30dp'
+            background_color: 0.2, 0.2, 0.2, 1
+            hint_text_color: 0.7, 0.7, 0.7, 1  # Lighter hint text color
+            foreground_color: 0.7, 0.7, 0.7, 1  # lighter hint color
+            on_text: root.on_year_input(self.text)
+
+        Label:
+            text: 'Enter the vehicle mileage (0 to 800k):'
+            size_hint_y: None
+            height: '30dp'
+            halign: 'left'
+            padding: [0, 20, 0, 0]
+            color: 1, 1, 1, 1  # White text color
+            text_size: self.width, None
+
+        TextInput:
+            hint_text: 'Mileage'
+            input_filter: 'int'
+            multiline: False
+            size_hint_y: None
+            height: '30dp'
+            background_color: 0.2, 0.2, 0.2, 1
+            hint_text_color: 0.7, 0.7, 0.7, 1  # Lighter hint text color
+            foreground_color: 0.7, 0.7, 0.7, 1  # lighter hint color
+            on_text: root.on_miles_input(self.text)
+
+        Label:
+            text: 'Choose the condition of the vehicle:'
+            size_hint_y: None
+            height: '30dp'
+            halign: 'left'
+            padding: [0, 20, 0, 0]
+            color: 1, 1, 1, 1  # White text color
+            text_size: self.width, None
+
+        Spinner:
+            text: 'Select condition'
+            values: ['Poor', 'Fair', 'Good', 'Great', 'Excellent', 'Like New']
+            size_hint_y: None
+            height: '30dp'
+            background_color: 0.2, 0.2, 0.2, 1
+            color: 0.7, 0.7, 0.7, 1  # Lighter hint color
+            option_cls: 'SlimSpinnerOption'
+            text_size: self.width, None
+            halign: 'left'
+            valign: 'middle'
+            on_text: root.condition = self.text
+
+        Widget:
+            size_hint_y: '50dp'  # Spacer to move the estimate button lower
+
+        Label:
+            id: output_label
+            text: "Complete the vehicle description and press 'Estimate Value'."
+            text_size: self.width, None
+            bold: True
+            size_hint_y: None
+            height: '100dp'
+            halign: 'center'
+            valign: 'middle'
+
+            color: 1, 1, 1, 1  # White text color
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            size_hint_y: None
+            height: '50dp'
+
+            HoverButton:
+                text: 'Estimate Value'
+                size_hint_y: None
+                height: '50dp'
+                normal_color: 0.13, 0.55, 0.13, 1
+                hover_color: 0.18, 0.62, 0.18, 1
+                color: 1, 1, 1, 1  # White text color
+                on_release: root.submit()
+
+            HoverButton:
+                text: 'Export Estimate'
+                size_hint_y: None
+                height: '50dp'
+                normal_color: 0.2, 0.4, 0.6, 1
+                hover_color: 0.3, 0.5, 0.7, 1
+                color: 1, 1, 1, 1  # White text color
+                on_release: root.export_estimate()
