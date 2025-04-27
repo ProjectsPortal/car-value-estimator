@@ -223,15 +223,16 @@ car-value-estimator/
 ├── .gitignore                     # Git ignore rules
 ├── data/
 │   ├── car_value_training_data_v2.csv
-│   └── README.md
 ├── images/
-│   ├── app_interface.png
+│   ├── app_icon.png
+│   └── app_interface.png
+│   └── example_report.png
 │   └── feature_importance.png
 ├── notebooks/
 │   ├── data_generation_car_value_estimator.ipynb
 │   └── model_training_car_value_estimator.ipynb
 └── example_reports/
-    └── sample_valuation.txt
+    └── Toyota_Camry_2021_Valuation.txt
 
 ```
 
