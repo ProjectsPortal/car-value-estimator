@@ -22,6 +22,12 @@ Beyond deployment, the project emphasizes realistic data simulation, efficient m
 
 A pre-built macOS application bundle (`.app`) is available for download from the [Releases](../../releases) section.
 
+<p align="center">
+  <img src="images/app_icon.png" alt="Application Icon" width="100"/>
+</p>
+<p align="center"><em>Figure: Application icon for the packaged macOS app.</em></p>
+
+
 > To run the app on macOS for the first time, you may need to manually approve it in **System Settings → Privacy & Security** (*see detailed instructions below*).
 
 ---
