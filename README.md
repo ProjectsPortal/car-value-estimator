@@ -29,10 +29,15 @@ Beyond deployment, the project emphasizes realistic data simulation, efficient m
 - End-to-end workflow: synthetic data generation → model training → ONNX export → cross-platform desktop deployment
 
 ## Application Interface
+
+The desktop application features a clean, native-style interface where users can enter vehicle details, including make, model, year, mileage, and condition, to receive an instant valuation.  
+
+The example below shows the application with fields populated and an estimated vehicle value displayed.
+
 <p align="center">
   <img src="images/app_interface.png" alt="Application Interface" width="600"/>
 </p>
-<p align="center"><em>Figure: Screenshot of application interface with valuation estimation.</em></p>
+<p align="center"><em>Figure: Example of the application interface with user input and predicted valuation displayed.</em></p>
 
 
 ---
@@ -40,16 +45,15 @@ Beyond deployment, the project emphasizes realistic data simulation, efficient m
 
 ## Example Report Export
 
-```
-Vehicle Valuation Report
-Generated: 2024-07-10
+Users can generate and export vehicle valuation reports as `.txt` files.  
 
-The estimated value of a 2007 Toyota
-with 101,000 miles in poor condition
-is $7051.68.
+Each report includes the report generation date, the estimated vehicle value, and the input parameters described in plain language.
 
-This valuation is only an estimate and may vary significantly with time and usage.
-```
+
+<p align="center">
+  <img src="images/example_report.png" alt="Example Report" width="600"/>
+</p>
+<p align="center"><em>Figure: Example of an exported vehicle valuation report.</em></p>
 
 ---
 
@@ -72,13 +76,17 @@ The vehicle value prediction model was trained on a dataset of approximately 114
   - Maximum tree depth: 13
 
 ### Evaluation
-- Achieved approximately **1.5% Mean Absolute Percentage Error (MAPE)** on the test set.
-- Performance metrics:
-  - **MAE**, **MSE**, **RMSE**, and **R²** were computed and aligned with high prediction accuracy.
-  - 5-fold cross-validation confirmed stable model generalization.
+- Final model performance:
+  - **1.3% Mean Absolute Percentage Error (MAPE)** (~98.7% average prediction accuracy).
+  - **R² Score:** 0.9989
+  - **Mean Absolute Error (MAE):** \$142.09
+  - **Root Mean Squared Error (RMSE):** \$306.62
+
 - Feature importance (F-score) indicated:
   - **Miles** and **Model** were the dominant predictors
   - **Year**, **Make**, and **Condition** were secondary factors.
+
+The model demonstrates strong predictive performance, achieving low average errors (MAPE 1.3% or MAE $142), high prediction-actuals fit (R² ~0.999), and stable cross-validation results (MAPE 5.9%). Occasional larger errors (RMSE ~2.1x MAE) correspond to rare edge cases not fully represented during synthetic data generation. Feature importance analysis confirms that mileage and model selection are the primary drivers of vehicle valuation.
 
 <p align="center">
   <img src="images/feature_importance.png" alt="Feature Importance Plot" width="600"/>
@@ -126,16 +134,7 @@ Additional considerations were applied to enhance data realism:
 
 ### Resale Value Formula
 
-Resale value was calculated based on the following multiplicative model:
-`Value = Base_Value × (Maker_Weight × Model_Weight × Year_Weight × Condition_Weight × Mileage_Weight) + Offset`
-
-Mileage impact was modeled as:
-`Mileage_Weight = max(0.01, min(1, 1 - (Miles / 400,000)))`
-
-For vehicles with mileage ≤ 25,000 miles, the mileage adjustment is skipped to reflect near-new conditions.
-
-This structure ensured realistic and bounded value distributions across different vehicle ages, brands, conditions, and usage profiles.
-
+Resale value was calculated based on the following multiplicative model: `Value = Base_Value × (Maker_Weight × Model_Weight × Year_Weight × Condition_Weight × Mileage_Weight) + Offset`. Mileage impact was modeled as: `Mileage_Weight = max(0.01, min(1, 1 - (Miles / 400,000)))`. For vehicles with `mileage ≤ 25,000 miles`, the `Mileage_Weight` is skipped to reflect near-new conditions. This structure ensured realistic and bounded value distributions across different vehicle ages, brands, conditions, and usage profiles.
 
 The full data generation process is documented in [`/notebooks/data_generation_car_value_estimator.ipynb`](notebooks/data_generation_car_value_estimator.ipynb).
 
@@ -191,14 +190,26 @@ Notes:
 
 ```
 car-value-estimator/
-├── main.py                # Application logic (UI interaction, model inference)
-├── kvcarvalueapp.kv        # Kivy layout file
-├── car_value_xgb_regressor.onnx  # Pre-trained model in ONNX format
-├── car_icon.icns           # Custom application icon
-├── requirements.txt        # Python dependencies
-├── LICENSE                 # MIT License
-├── README.md               # Project description
-└── .gitignore              # Git ignore rules
+├── main.py                        # Application logic (UI interaction, model inference)
+├── kvcarvalueapp.kv               # Kivy layout file
+├── car_value_xgb_regressor.onnx   # Trained XGBoost model exported to ONNX format
+├── car_icon.icns                  # Custom application icon for macOS
+├── requirements.txt               # Python dependencies
+├── LICENSE                        # MIT License
+├── README.md                      # Project description and usage guide
+├── .gitignore                     # Git ignore rules
+├── data/
+│   ├── car_value_training_data_v2.csv
+│   └── README.md
+├── images/
+│   ├── app_interface.png
+│   └── feature_importance.png
+├── notebooks/
+│   ├── data_generation_car_value_estimator.ipynb
+│   └── model_training_car_value_estimator.ipynb
+└── example_reports/
+    └── sample_valuation.txt
+
 ```
 
 ---
@@ -211,5 +222,7 @@ This project is licensed under the MIT License.
 
 ## Acknowledgements
 
-https://kivy.org/
-https://onnxruntime.ai/
+- Kivy: https://kivy.org/
+- ONNX Runtime: https://onnxruntime.ai/
+- XGBoost:  https://xgboost.ai/
+- Scikit-learn: https://scikit-learn.org/
