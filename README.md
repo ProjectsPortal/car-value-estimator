@@ -36,7 +36,7 @@ A pre-built macOS application bundle (`.app`) is available for download from the
 - User inputs: Make, Model, Year, Mileage, Condition
 - Real-time car value prediction using an ONNX-optimized boosted tree regressor
 - Fully local inference — no internet connection required after installation
-- Dynamic dropdowns that update available models based on selected manufacturer
+- Dynamic dropdowns that update available models based on selected manufacturer with responsive hover state
 - Generate and export valuation reports (`.txt` format)
 - Native macOS-style interface using Kivy framework
 - Custom application icon and lightweight desktop app packaging
@@ -45,6 +45,8 @@ A pre-built macOS application bundle (`.app`) is available for download from the
 ## Application Interface
 
 The desktop application features a clean, native-style interface where users can enter vehicle details, including make, model, year, mileage, and condition, to receive an instant valuation.  
+
+The app incorporates dynamic dropdowns that update available models based on the selected manufacturer, custom hover behaviors for greater visual feedback, and adaptive layout across common window dimensions.
 
 The example below shows the application with fields populated and an estimated vehicle value displayed.
 
