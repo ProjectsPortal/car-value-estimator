@@ -8,7 +8,7 @@ Built using Kivy for native-style UI development, ONNX Runtime for fast machine 
 
 ## Overview
 
-This project delivers a cross-platform desktop application capable of estimating used vehicle resale values based on user inputs.
+This project delivers a desktop application designed for cross-platform support, capable of estimating used vehicle resale values based on user inputs. (*Currently packaged and released for macOS.*)
 
 It demonstrates a full machine learning workflow from synthetic data generation and custom ML model training to lightweight cross-platform deployment via a native-style desktop app.
 
