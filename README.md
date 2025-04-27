@@ -18,6 +18,14 @@ Beyond deployment, the project emphasizes realistic data simulation, efficient m
 
 ---
 
+## Application Download
+
+A pre-built macOS application bundle (`.app`) is available for download from the [Releases](../../releases) section.
+
+> To run the app on macOS for the first time, you may need to manually approve it in **System Settings → Privacy & Security** (*see detailed instructions below*).
+
+---
+
 ## Features
 - User inputs: Make, Model, Year, Mileage, Condition
 - Real-time car value prediction using an ONNX-optimized boosted tree regressor
@@ -160,7 +168,7 @@ The synthetic dataset (`car_value_training_data_v2.csv`) is available in the [`/
 - Python 3.10+
 - pip (Python package installer)
 
-### Setup
+### Basic Setup
 
 ```bash
 # Clone the repository
@@ -174,15 +182,22 @@ pip install -r requirements.txt
 python main.py
 ```
 
-### Packaging for macOS
+### Running the App on macOS
 
-The application was successfully packaged into a standalone macOS .app using PyInstaller.
-The packaged application is not included directly in this repository due to file size constraints.
+The application was successfully packaged into a standalone macOS `.app` bundle using PyInstaller.  
+The packaged `.app` is not included directly in the repository due to file size constraints but is available separately via GitHub Releases.
 
-Notes:
-- A zipped .app file is available separately via GitHub Releases
-- As the application is unsigned, macOS may require manual approval during first launch.
-- The app has only been tested on macOS Sonoma 14.2
+### Notes:
+- A zipped `.app` file can be downloaded from the [Releases](../../releases) section.
+- As the application is **unsigned** (no Apple Developer ID), macOS will initially block it on first launch.
+- To open the app:
+  1. Attempt to open the `.app` normally (it will be blocked).
+  2. Go to **System Settings → Privacy & Security**.
+  3. Under "Security", locate the message about the blocked app and click **"Open Anyway"**.
+  4. Confirm when prompted.
+- After this first approval, the app will launch normally without further warnings.
+- The app has been tested on macOS Sonoma 14.2.
+
 
 ---
 
