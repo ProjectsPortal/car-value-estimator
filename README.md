@@ -86,7 +86,7 @@ The vehicle value prediction model was trained on a dataset of approximately 114
   - **Miles** and **Model** were the dominant predictors
   - **Year**, **Make**, and **Condition** were secondary factors.
 
-The model demonstrates strong predictive performance, achieving low average errors (MAPE 1.3% or MAE $142), high prediction-actuals fit (R² ~0.999), and stable cross-validation results (MAPE 5.9%). Occasional larger errors (RMSE ~2.1x MAE) correspond to rare edge cases not fully represented during synthetic data generation. Feature importance analysis confirms that mileage and model selection are the primary drivers of vehicle valuation.
+The model demonstrates strong predictive performance, achieving low average errors (MAPE 1.3% or MAE $142), high prediction-to-actuals fit (R² ~0.999), and stable cross-validation results (MAPE 5.9%). Occasional larger errors (RMSE ~2.1x MAE) correspond to rare edge cases not fully represented during synthetic data generation. Feature importance analysis confirms that mileage and model selection are the primary drivers of vehicle valuation.
 
 <p align="center">
   <img src="images/feature_importance.png" alt="Feature Importance Plot" width="600"/>
@@ -149,7 +149,7 @@ The synthetic dataset (`car_value_training_data_v2.csv`) is available in the [`/
 | UI Framework | [Kivy](https://kivy.org/) |
 | Model Inference | [ONNX Runtime](https://onnxruntime.ai/) |
 | Backend Language | Python 3.10+ |
-| Model Training | XGBoost (trained externally, exported to ONNX) |
+| Model Training | XGBoost (custom trained and exported to ONNX) |
 | App Packaging | PyInstaller (for macOS `.app` bundling) |
 
 ---
